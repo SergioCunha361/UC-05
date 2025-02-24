@@ -90,6 +90,7 @@ app.delete("/produtos/:id", (requisicao, resposta) => {
 
 app.get("/produtos/:id", (requisicao, resposta) => {
   try {
+    // o id do paramentro é sempre string
     const id = requisicao.params.id;
     const produto = bancoDados.find(elemento => elemento.id === id);
     if(!produto){
@@ -104,6 +105,17 @@ app.get("/produtos/:id", (requisicao, resposta) => {
   }
 })
 
+app.delete("/produtos", (requisicao, resposta) => {
+  try {
+    bancoDados.length = 0;
+    resposta.status(200).json({mensagem: "Todos os produtos foram excluidos!"})
+  } catch (error) {
+    resposta.status(500).json({
+      mensagem: "Erro ao deletar produtos",
+      erro: error.message
+    });
+  }
+})
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
