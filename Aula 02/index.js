@@ -48,8 +48,8 @@ app.post('/produtos', (requisicao, resposta) => {
 app.put('/produtos/:id', (requisicao, resposta) => {
   try {
     // loacalhost:3000/produtos/1 - O 1 é o parametro
-const { id } = requisicao.params.id;
-const { novoNome, novoPreco }= requisicao.body;
+const id  = requisicao.params.id;
+
 const produto = bancoDados.find(elemento => elemento.id === id);
 if (!id){
   return resposta.status(404).json({mensagem:"Informe o parametro"})
@@ -58,13 +58,13 @@ if (!id){
 if (!produto){
   return resposta.status(404).json({mensagem: "Produto não enconatrado"})
   }
-
+  const { novoNome, novoPreco }= requisicao.body;
   if (produto){
     produto.nome = novoNome
     produto.preco = novoPreco
-    resposta.status(200).json({mensagem: "Produto atualizado com sucesso"})
+    return resposta.status(200).json({mensagem: "Produto atualizado com sucesso"})
     }
-
+    
 
     } catch (error){
       resposta.status(500).json({
@@ -78,7 +78,7 @@ if (!produto){
 app.delete('/produtos/:id', (requisicao, resposta) => {
   try {
     // loacalhost:3000/produtos/1 - O 1 é o parametro
-    const { id } = requisicao.params.id;
+    const  id  = requisicao.params.id;
   
     const index = bancoDados.findIndex(elemento => elemento.id === id)
     if (index === -1){
@@ -98,8 +98,8 @@ app.delete('/produtos/:id', (requisicao, resposta) => {
 
 app.get("/produtos/:id", (requisicao, resposta) => {
   try {
-    const id = requisicao.params.id;
-    const pruduto = bancoDados.find( elemento => elemento.id = id);
+    const id = requisicao.params.id;  // esse id é string naturalmente
+    const produto =bancoDados.find( elemento => elemento.id === id);
     if (!produto){
       return resposta.status(404).json({mensagem:"Produto não encontrado"})
     }
@@ -109,6 +109,20 @@ app.get("/produtos/:id", (requisicao, resposta) => {
       mensagem: "Erro ao buscar produto",
       erro: error.message
     })    
+  }
+})
+
+
+//Deletar todos os produtos
+app.delete("/produtos", (requisicao, resposta) => {
+  try {
+    bancoDados.length = 0; // ou bancoDados = [}
+    resposta.status(200).json({mensagem:"Todos os produtos foram dletados"})
+  } catch (error) {
+    resposta.status(500).json({
+      mensagem:"Erro ao deletar produtos",
+      erro: error.message
+    })  
   }
 })
 

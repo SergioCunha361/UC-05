@@ -8,4 +8,4 @@ function listarProdutos() {
         }
     } catch (error) {
         
-    }
+    }}
