@@ -1,3 +1,4 @@
+
 // Importando banco de dados;
 const { pool  }= require ('./src/config/database');
 const express = require('express');
