@@ -1,41 +1,41 @@
-const { pool } = require ('../../../config/database')
+const { pool } = require('../../../config/database')
 
 class AlunoModel {
-    static async criar (matricula, nome, email,senha){
+    static async criar(matricula, nome, email, senha) {
         const dados = [matricula, nome, email, senha]
-        const consulta = `insert into aluno(matricula, nome, email, senha) values ($1, $2, $3, $4) return *`
+        const consulta = `insert into aluno(matricula, nome, email, senha) values ($1, $2, $3, $4) returning *`
         const novoAluno = await pool.query(consulta, dados)
-        return novoAluno.rows 
-       }
+        return novoAluno.rows
+    }
 
-    static async editar(matricula, nome, email,senha){
+    static async editar(matricula, nome, email, senha) {
         const dados = [matricula, nome, email, senha]
         const consulta = `update aluno set nome = $2, email = $3, senha = $4 where matricula = $1 return *`
         const alunoAtualizado = await pool.query.apply(consulta, dados)
         return alunoAtualizado.rows
     }
-    static async listar(matricula, nome, email,senha){
-            const consulta =`select * from aluno`
-            const alunos = await pool.query(consulta)
-            return alunos.rows
+    static async listar(matricula, nome, email, senha) {
+        const consulta = `select * from aluno`
+        const alunos = await pool.query(consulta)
+        return alunos.rows
     }
-    static async listarPorId(matricula){
+    static async listarPorMatricula(matricula) {
         const dados = [matricula]
-        const consulta =`select * from aluno where matricula = $1`
+        const consulta = `select * from aluno where matricula = $1`
         const alunos = await pool.query(consulta, dados)
         return alunos.rows
 
     }
-    static async excluirPorId(matricula){
+    static async excluirPorMatricula(matricula) {
         const dados = [matricula]
-        const consulta =`delete from aluno where matricula = $1`
+        const consulta = `delete from aluno where matricula = $1`
         const aluno = await pool.query(consulta, dados)
         return aluno.rows
 
     }
-    static async excluirTodos(){
+    static async excluirTodos() {
         const consulta = `delete from aluno`
-        await pool.query(consulta) 
+        await pool.query(consulta)
 
 
     }
