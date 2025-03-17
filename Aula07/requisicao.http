@@ -1,0 +1,53 @@
+### Rota para Listar todos os alunos
+GET http://localhost:3000/alunos
+Content-Type: application/json
+
+### fechando a requicisao
+
+### Listar um único aluno por ID
+GET http://localhost:3000/alunos/1
+Content-Type: application/json
+
+###
+
+### Rota cadastrando o aluno
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+    "matricula": "A12345",
+    "nome":"Sérgio Cunha",
+    "email":1"sergio@gmail.com",
+    "senha": "12345"
+}
+
+### 
+
+
+### PUT - Editar um aluno tendo como chave ID
+PUT http://localhost:3000/alunos/1
+Content-Type: application/json
+
+{
+    "matricula": "A12345",
+    "nome":"Gabriel Dias",
+    "email":1"sergio@gmail.com",
+    "senha": "12345"
+}
+
+###
+
+
+### DELETE - Deletar um aluno pelo ID
+DELETE http://localhost:3000/alunos/1
+Content-Type: application/json
+
+###
+
+### DELETE - Deletar todos alunos
+DELETE http://localhost:3000/aluno
+Content-Type: application/json
+
+###
+
+
