@@ -10,11 +10,11 @@ class AlunoModel {
 
     static async editar(matricula, nome, email, senha) {
         const dados = [matricula, nome, email, senha]
-        const consulta = `update aluno set nome = $2, email = $3, senha = $4 where matricula = $1 return *`
-        const alunoAtualizado = await pool.query.apply(consulta, dados)
+        const consulta = `update aluno set nome = $2, email = $3, senha = $4 where matricula = $1 returning *`
+        const alunoAtualizado = await pool.query(consulta, dados)
         return alunoAtualizado.rows
     }
-    static async listar(matricula, nome, email, senha) {
+    static async listar() {
         const consulta = `select * from aluno`
         const alunos = await pool.query(consulta)
         return alunos.rows

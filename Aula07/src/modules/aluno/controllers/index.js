@@ -15,7 +15,7 @@ class AlunoController {
     }
     static async editar(requisicao, resposta) {
         try {
-            const matricula = requisicao.parmas.matricula
+            const matricula = requisicao.params.matricula
             const { nome, email, senha } = requisicao.body
             if (!nome || !email || !senha) {
                 return resposta.status(400).json({ mensagem: "Todos os campos devem ser preenchido" })
@@ -24,9 +24,9 @@ class AlunoController {
             if (aluno.length === 0) {
                 return resposta.status(400).json({ mensagem: "Todos os campos devem ser preenchido" })
             }
-            resposta.status(200).json({ mensagem: "Aluno editado com sucesso" })
+            resposta.status(200).json({ mensagem: "Aluno editado com sucesso", aluno: aluno })
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao editar o aluno", erro: error.mensage })
+            resposta.status(500).json({ mensagem: "Erro ao editar o aluno", erro: error.message })
         }
 
     }
@@ -39,36 +39,36 @@ class AlunoController {
             resposta.status(200).json(alunos)
             
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao listar todos os alunos", erro: error.mensage })
+            resposta.status(500).json({ mensagem: "Erro ao listar todos os alunos", erro: error.message })
 
         }
 
     }
     static async listarPorMatricula(requisicao, resposta) {
         try {
-            const id = requisicao.params.id
-            const aluno = await AlunoModel.listarPorId(matricula)
-            if (!aluno) {
+            const matricula = requisicao.params.matricula
+            const aluno = await AlunoModel.listarPorMatricula(matricula)
+            if (aluno.length === 0) {
                 return resposta.status(400).json({ mensagem: "Aluno não encontrado" })
             }
             resposta.status(200).json(aluno)
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao criar o aluno", erro: error.mensage })
+            resposta.status(500).json({ mensagem: "Erro ao criar o aluno", erro: error.message })
         }
 
 
     }
     static async excluirPorMatriula(requisicao, resposta) {
         try {
-            const matricula = requisicao.parmas.matricula
-            const aluno = await AlunoModel.listarPorMatricula(matricula)
+            const matricula = requisicao.params.matricula
+            const aluno = await AlunoModel.excluirPorMatricula(matricula)
             if (!aluno) {
                 return resposta.status(400).json({ mesnagem: "Aluno não encontrado" })
             }
             await AlunoModel.excluirPorMatricula(matricula)
             resposta.status(200).json({ mensagem: "Aluno excluído com sucesso" })
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao exluir o aluno", erro: error.mensage })
+            resposta.status(500).json({ mensagem: "Erro ao exluir o aluno", erro: error.message })
 
         }
 
@@ -79,7 +79,7 @@ class AlunoController {
             resposta.status(200).json({ mensagem: "Todos alunos foram excluídos" })
 
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao exluit todos", erro: error.mensage })
+            resposta.status(500).json({ mensagem: "Erro ao exluit todos", erro: error.message })
         }
 
     }
