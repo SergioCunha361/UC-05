@@ -33,7 +33,7 @@ class AlunoController {
       if (aluno.length === 0) {
         return resposta.status(400).json({ mensagem: "Aluno não encontrado!" });
       }
-      resposta.status(200).json({ mensagem: "Aluno editado com sucesso!" });
+      resposta.status(200).json({ mensagem: "Aluno editado com sucesso!", aluno: aluno });
     } catch (error) {
       resposta
         .status(500)
@@ -72,6 +72,7 @@ class AlunoController {
   }
   static async excluirTodos(requisicao, resposta) {
     try {
+      debug("Rota raiz foi acessada!");
       await AlunoModel.excluirTodos();
       resposta
         .status(200)
@@ -85,9 +86,9 @@ class AlunoController {
   }
   static async excluirPorMatricula(requisicao, resposta) {
     try {
-      const matricula = requisicao.parmas.matricula;
+      const matricula = requisicao.params.matricula;
       const aluno = await AlunoModel.listarPorMatricula(matricula);
-      if (!aluno) {
+      if (aluno.length === 0) {
         return resposta.status(400).json({ mensagem: "Aluno não encontrado!" });
       }
       await AlunoModel.excluirPorMatricula(matricula);
