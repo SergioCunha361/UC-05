@@ -27,16 +27,16 @@ Content-Type: application/json
 
 
 ### PUT - Editar um aluno tendo como chave ID
-PUT http://localhost:3000/pedido/6
+PUT http://localhost:3000/pedido/8
 Content-Type: application/json
 
 {
-    "cliente": "Lucas Dias",
-    "medicamentos":  "Soro",
-    "quantidade": 8,
-    "valor_total": 12,
-    "status": "SE100",
-    "forma_pagamento": "Dinheiro"
+    "cliente": "Sérgio Cunha",
+    "medicamentos":  "ASS",
+    "quantidade": 15,
+    "valor_total": 22,
+    "status": "SA100",
+    "forma_pagamento": "Cartão"
 }
 
 ###
