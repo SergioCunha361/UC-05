@@ -1,0 +1,57 @@
+### Rota para Listar todos os alunos
+GET http://localhost:3000/pedidos
+Content-Type: application/json
+
+### fechando a requicisao
+
+### Listar um único aluno por ID
+GET http://localhost:3000/pedido/1
+Content-Type: application/json
+
+###
+
+### Rota cadastrando o aluno
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+    "cliente": "Lucas Dias",
+    "medicamentos":  "Algodão",
+    "quantidade": 8,
+    "valor_total": 12,
+    "status": "SE100",
+    "forma_pagamento": "Dinheiro"
+}
+
+### 
+
+
+### PUT - Editar um aluno tendo como chave ID
+PUT http://localhost:3000/pedido/6
+Content-Type: application/json
+
+{
+    "cliente": "Lucas Dias",
+    "medicamentos":  "Soro",
+    "quantidade": 8,
+    "valor_total": 12,
+    "status": "SE100",
+    "forma_pagamento": "Dinheiro"
+}
+
+###
+
+
+### DELETE - Deletar um aluno pelo ID
+DELETE http://localhost:3000/pedido/7
+Content-Type: application/json
+
+###
+
+### DELETE - Deletar todos alunos
+DELETE http://localhost:3000/pedidos
+Content-Type: application/json
+
+###
+
+

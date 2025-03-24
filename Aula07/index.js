@@ -1,4 +1,5 @@
 
+
 // Importando banco de dados;
 const express = require('express');
 const dotenv = require('dotenv');
@@ -11,9 +12,6 @@ const app = express();
 
 //aplicação use express como json(javascript)
 app.use(express.json());
-// /aluno/matricula 
-// / aluno
-
 app.use(alunoRoutes);
 
 

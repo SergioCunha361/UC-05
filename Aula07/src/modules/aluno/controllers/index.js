@@ -10,7 +10,7 @@ class AlunoController {
             const novoAluno = await AlunoModel.criar(matricula, nome, email, senha)
             resposta.status(201).json({ mensagem: "Aluno criado com sucesso!", aluno: novoAluno })
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao criar o aluno", erro: error.mensage })
+            resposta.status(500).json({ mensagem: "Erro ao criar o aluno", erro: error.message })
         }
     }
     static async editar(requisicao, resposta) {
@@ -18,11 +18,11 @@ class AlunoController {
             const matricula = requisicao.params.matricula
             const { nome, email, senha } = requisicao.body
             if (!nome || !email || !senha) {
-                return resposta.status(400).json({ mensagem: "Todos os campos devem ser preenchido" })
+                return resposta.status(400).json({ mensagem: "Todos os campos devem ser preenchidoss" })
             }
             const aluno = await AlunoModel.editar(matricula, nome, email, senha)
             if (aluno.length === 0) {
-                return resposta.status(400).json({ mensagem: "Todos os campos devem ser preenchido" })
+                return resposta.status(400).json({ mensagem: "Pedido não encontrado" })
             }
             resposta.status(200).json({ mensagem: "Aluno editado com sucesso", aluno: aluno })
         } catch (error) {
@@ -53,7 +53,7 @@ class AlunoController {
             }
             resposta.status(200).json(aluno)
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao criar o aluno", erro: error.message })
+            resposta.status(500).json({ mensagem: "Erro ao listar aluno", erro: error.message })
         }
 
 
@@ -79,7 +79,7 @@ class AlunoController {
             resposta.status(200).json({ mensagem: "Todos alunos foram excluídos" })
 
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao exluit todos", erro: error.message })
+            resposta.status(500).json({ mensagem: "Erro ao exluir todos", erro: error.message })
         }
 
     }

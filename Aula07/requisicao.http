@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "matricula": "A12345",
     "nome":"Sérgio Cunha",
-    "email":1"sergio@gmail.com",
+    "email":"sergio@gmail.com",
     "senha": "12345"
 }
 
