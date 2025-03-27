@@ -61,8 +61,8 @@ class PedidoController {
     static async excluirPorPedido(requisicao, resposta) {
         try {
             const id = requisicao.params.id
-            const pedidoSolicitado = await PedidoModel.excluirPorPedido(id)
-            if (!pedidoSolicitado) {
+            const pedidoSolicitado = await PedidoModel.listarPorPedido(id)
+            if (pedidoSolicitado.length === 0) {
                 return resposta.status(400).json({ mesnagem: "Pedido não encontrado" })
             }
             await PedidoModel.excluirPorPedido(id)
