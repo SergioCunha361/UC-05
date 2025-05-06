@@ -50,6 +50,6 @@ const TurmaModel = sequelize.define('TurmaModel',{
 
 
 
-curso cod_curso 4, nome, descrição
+// curso cod_curso 4, nome, descrição
 
-turma cod_turma 9, cod_curso, turno 
+// turma cod_turma 9, cod_curso, turno 
