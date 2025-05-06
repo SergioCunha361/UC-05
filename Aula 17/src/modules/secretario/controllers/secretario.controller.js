@@ -7,9 +7,7 @@ class SecretarioController {
     try {
       const { matricula, nome, email, senha, turma_cod } = req.body;
       if (!matricula || !nome || !email || !senha || !turma_cod) {
-        return res
-          .status(400)
-          .json({ msg: "Todos os campos devem serem preenchidos!" });
+        return res.status(400).json({ msg: "Todos os campos devem serem preenchidos!" });
       }
       const aluno = await AlunoModel.create({
         matricula,
@@ -20,9 +18,7 @@ class SecretarioController {
       });
       res.status(201).json(aluno);
     } catch (error) {
-      res
-        .status(500)
-        .json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
+      res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
     }
   }
   static async listarAlunos(req, res) {
@@ -33,9 +29,7 @@ class SecretarioController {
       }
       res.status(200).json(alunos);
     } catch (error) {
-      res
-        .status(500)
-        .json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
+      res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
     }
   }
   static async listarAlunoPorMatricula(req, res) {
@@ -70,9 +64,7 @@ class SecretarioController {
       }
       res.status(200).json(alunoAtualizado);
     } catch (error) {
-      res
-        .status(500)
-        .json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
+      res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
     }
   }
   static async deletarAluno(req, res) {
@@ -83,15 +75,11 @@ class SecretarioController {
         return res.status(404).json({ msg: "Aluno não encontrado!" });
       }
       await AlunoModel.destroy({
-        where: {
-          matricula: matricula,
-        },
-      });
+        where: {matricula: matricula}}
+      );
       res.status(200).json({ msg: "Aluno excluido com sucesso!" });
     } catch (error) {
-      res
-        .status(500)
-        .json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
+      res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
     }
   }
 }
