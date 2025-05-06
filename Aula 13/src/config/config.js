@@ -14,3 +14,14 @@ module.exports = {
   test: {},
   production: {},
 };
+
+
+// DEV_DB_USER=postgres
+// DEV_DB_PASSWORD=Porto321@
+// DEV_DB_NOME=sistema_a
+// DEV_DB_HOST=localhost
+// DEV_DB_PORTA=5432
+// DEV_DB_DIALECT=postgres
+// PORTA=3000
+// DEV_DB_DIALECT=postgres
+// NODE_ENV=development
