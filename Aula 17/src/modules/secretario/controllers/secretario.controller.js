@@ -82,4 +82,41 @@ class SecretarioController {
       res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
     }
   }
+
+    static async deletarAluno(req, res) {
+    try {
+      const matricula = req.params.matricula;
+      const aluno = await AlunoModel.findByPk({ matricula });
+      if (!aluno) {
+        return res.status(404).json({ msg: "Aluno não encontrado!" });
+      }
+      await AlunoModel.destroy({
+        where: {matricula: matricula}}
+      );
+      res.status(200).json({ msg: "Aluno excluido com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
+    }
+  }
+  static async deletarTodosAlunos(req, res) {
+    try {
+      const alunos = await AlunoModel.findAll();
+  
+      if (alunos.length === 0) {
+        return res.status(200).json({ msg: "Não há alunos cadastrados para excluir." });
+      }
+  
+      await AlunoModel.destroy({
+        where: {},
+        truncate: false  // remove todos os registros sem apagar a estrutura da tabela
+      });
+  
+      res.status(200).json({ msg: "Todos os alunos foram excluídos com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ msg: "Erro interno do servidor. Por favor, tente mais tarde" });
+    }
+  }
+  
 }
+mudule.exports = SecretarioController;
+
