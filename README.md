@@ -137,6 +137,23 @@ Este repositório é dedicado à UC 5, onde será utilizado o Express no backend
 - Requisitos e funcionalidades
 - Implementação e apresentação do projeto
 
+### instalação 
+- criar pasta 
+- abrir vs code 
+- npm init -y (-y para inicalizar sem perguntar)
+- npm install pg dotenv express
+-  npx sequelize-cli db:migrate --config src/config/config.js
+
+
+### .env
+DEV_DB_USER=postgres
+DEV_DB_PASSWORD=Porto321@
+DEV_DB_NOME=sistema_academico
+DEV_DB_HOST=localhost
+DEV_DB_PORTA=5432
+DEV_DB_DIALECT=postgres
+PORTA=3000
+NODE_ENV=development
 
 ### .env
 DEV_DB_PASSWORD=BemVindo!

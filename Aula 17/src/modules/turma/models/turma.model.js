@@ -1,3 +1,4 @@
+const { isIn } = require('validator');
 const sequelize = require('../../../config/configDb');
 const { DataTypes } = require('sequelize');
 
@@ -6,50 +7,45 @@ const TurmaModel = sequelize.define('TurmaModel',{
         type: DataTypes.INTERGER,
         primaryKey: true,
         validate:{
-            is:{
-                args:/^\d{1,9}$/,
-                msg: 'Por favor, insira apenas números com até 9 dígitos.'
+            isNumeric:{
+                args:/^\d{9}$/,
+                msg: 'Por favor, insira apenas números com 9 dígitos.'
+            }
+            //ou 
+            //len{
+            // args:[9],
+            //msg:'insira 9 numeros'
             }
         }
       },
-      nome: {
-        type: DataTypes.STRING(100),
+      cod_curso: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        validate:{
-            isAlpha:{
-                msg:'É permitido apenas letras!'
-            }
-        }
+        validate: {
+          isNumeric: {
+            args:/^\d{4}$/,
+            msg: 'Por favor, insira apenas números com 4 dígitos.'
+          }
+        },
+      references:{
+        model: 'curso',
+        key: 'cod_curso'
+      }
       },
-      descricao:{
-        type: DataTypes.STRING(100),
-        unique: true,
-        allowNull: false, // Caso erro, é aqui
-        validate:{
-            isAlpha:{
-                msg:'É permitido apenas letras!'
-            }
-        }
-      },     
-      },
-    {
-        tableName: 'curso',
+
+      turno: {
+        type: DataTypes.STRING(12),
+        allowNull: false,
+            isIn:{
+            args: [['matutino','vespertino','noturno']],
+            msg:'Turno Inválido!'
+        }        
+      },      
+      {
+        tableName: 'turma',
         createdAt: 'criado_em',
         updatedAt: 'atualizado_em'
     }
   );
 
-  module.exports = CursoModel
-
-
-  
-
-
-
-
-
-
-
-// curso cod_curso 4, nome, descrição
-
-// turma cod_turma 9, cod_curso, turno 
+  module.exports = TurmaModel

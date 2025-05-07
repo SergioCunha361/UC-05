@@ -6,9 +6,9 @@ const CursoModel = sequelize.define('CursoModel',{
         type: DataTypes.INTERGER,
         primaryKey: true,
         validate:{
-            is:{
-                args:/^\d{1,4}$/,
-                msg: 'Por favor, insira apenas números com até 4 dígitos.'
+            isNumeric:{
+                args:/^\d{4}$/,
+                msg: 'Por favor, insira apenas números com 4 dígitos.'
             }
         }
       },
@@ -24,7 +24,7 @@ const CursoModel = sequelize.define('CursoModel',{
       descricao:{
         type: DataTypes.STRING(100),
         unique: true,
-        allowNull: false, // Caso erro, é aqui
+        allowNull: false,
         validate:{
             isAlpha:{
                 msg:'É permitido apenas letras!'

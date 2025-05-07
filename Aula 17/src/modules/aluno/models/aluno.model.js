@@ -8,7 +8,11 @@ const AlunoModel = sequelize.define('AlunoModel',{
         validate:{
             is:{
                 args:/^[a-zA-Z]\d{8}$/,
+<<<<<<< HEAD
                 msg: 'A matrícula deve começar com uma letra e ter oito números em seguida.'
+=======
+                msg: 'A matrícula deve começar com uma letra e ter quatro números em seguida.'
+>>>>>>> 962faa41ae1f92dabba54b4b141c342511225d78
             }
         }
       },
@@ -26,7 +30,11 @@ const AlunoModel = sequelize.define('AlunoModel',{
         unique: true,
         allowNull: false, // Caso erro, é aqui
         validate:{
+<<<<<<< HEAD
             is:{
+=======
+            isEmail:{
+>>>>>>> 962faa41ae1f92dabba54b4b141c342511225d78
                 args:/^[a-zA-Z0-9._%+-]+@edum\.rn\.senac\.br$/                ,
                 msg:'E-mail invalido! O e-mail deve pertencer ao dominio @rn.senac.br'
             }
@@ -50,8 +58,13 @@ const AlunoModel = sequelize.define('AlunoModel',{
         type: DataTypes.CHAR(9),
         allowNull: false,
         references:{
+<<<<<<< HEAD
           model: 'turma',
           key: 'turma_cod'
+=======
+          model: turma,
+          key: turma_cod
+>>>>>>> 962faa41ae1f92dabba54b4b141c342511225d78
         }
       }
     },
