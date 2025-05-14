@@ -16,9 +16,8 @@ const CursoModel = sequelize.define('CursoModel',{
         type: DataTypes.STRING(100),
         allowNull: false,
         validate:{
-            isAlpha:{
-                msg:'É permitido apenas letras!'
-            }
+          args: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]{1,100}$/,
+          msg: 'Por favor, insira o nome de até 100 caracteres'
         }
       },
       descricao:{
@@ -26,9 +25,8 @@ const CursoModel = sequelize.define('CursoModel',{
         unique: true,
         allowNull: false,
         validate:{
-            isAlpha:{
-                msg:'É permitido apenas letras!'
-            }
+            args: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]{1,100}$/,
+            msg: 'Por favor, insira o nome de até 100 caracteres'
         }
       },     
       },
