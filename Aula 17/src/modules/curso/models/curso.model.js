@@ -17,7 +17,7 @@ const CursoModel = sequelize.define('CursoModel',{
         allowNull: false,
         validate:{
           args: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]{1,100}$/,
-          msg: 'Por favor, insira o nome de até 100 caracteres'
+          msg: 'Por favor, insira o nome de até 100 caracteres.'
         }
       },
       descricao:{
